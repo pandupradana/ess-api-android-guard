@@ -173,10 +173,10 @@ class PatrolArea extends REST_Controller
 
     public function get_history_get() {
         // Otentikasi
-        if (!$this->rest->api_key_check()) {
-            $this->response(['status' => false, 'message' => 'Unauthorized Access.'], REST_Controller::HTTP_UNAUTHORIZED);
-            return;
-        }
+        // if (!$this->rest->api_key_check()) {
+        //     $this->response(['status' => false, 'message' => 'Unauthorized Access.'], REST_Controller::HTTP_UNAUTHORIZED);
+        //     return;
+        // }
 
         // Ambil Filter (GET parameters)
         $start_date = $this->get('start_date');
@@ -204,10 +204,10 @@ class PatrolArea extends REST_Controller
 
     public function get_room_get() {
         // Otentikasi Wajib (sesuai permintaan lu)
-        if (!$this->rest->api_key_check()) {
-            $this->response(['status' => false, 'message' => 'Unauthorized Access.'], REST_Controller::HTTP_UNAUTHORIZED);
-            return;
-        }
+        // if (!$this->rest->api_key_check()) {
+        //     $this->response(['status' => false, 'message' => 'Unauthorized Access.'], REST_Controller::HTTP_UNAUTHORIZED);
+        //     return;
+        // }
 
         $id_master_room = $this->get('id_master_room');
 
