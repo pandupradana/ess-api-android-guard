@@ -233,4 +233,32 @@ class PatrolArea extends REST_Controller
         }
     }
 
+
+    public function get_photos_get() {
+
+        $id_detail = $this->get('id_guard_patrol_detail');
+
+        if (!$id_detail) {
+            $this->response(['status' => false, 'message' => 'ID Patroli Detail diperlukan.'], REST_Controller::HTTP_BAD_REQUEST);
+            return;
+        }
+
+        // Panggil Model
+        $photo_data = $this->M_PatrolArea->getPatrolPhotos($id_detail);
+
+        if ($photo_data) {
+            $this->response([
+                'status' => true,
+                'message' => 'Daftar foto patroli berhasil dimuat.',
+                'total_photos' => count($photo_data),
+                'data' => $photo_data
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Foto untuk ID Patroli ' . $id_detail . ' tidak ditemukan.'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
+    }
+
 }

@@ -93,4 +93,19 @@ class M_PatrolArea extends CI_Model {
         }
         return false;
     }
+
+
+    public function getPatrolPhotos($id_guard_patrol_detail) {
+        $this->db_guard->select('keterangan_patroli, url_photo'); // Hanya ambil kolom yang dibutuhkan Android
+        $this->db_guard->from('guard_patrol_photo');
+        $this->db_guard->where('id_guard_patrol_detail', $id_guard_patrol_detail);
+        $this->db_guard->order_by('tanggal_create', 'ASC');
+        
+        $query = $this->db_guard->get();
+        
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return false;
+    }
 }
